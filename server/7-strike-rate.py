@@ -1,5 +1,6 @@
 from csvToJSon import csvToJson
 from functools import reduce
+import json
 
 deliveries = csvToJson("../data/deliveries.csv")
 matches = csvToJson("../data/matches.csv")
@@ -33,7 +34,8 @@ def strikeRateBySeason(playerName):
         season,runsAndBalls = item
         finaResult[season] = runsAndBalls["runs"]/runsAndBalls["balls"]
 
-    return finaResult   
+    with open("../public/strike-rate.json","w") as file:
+     json.dump(finaResult,file,indent=4)  
 
 
    

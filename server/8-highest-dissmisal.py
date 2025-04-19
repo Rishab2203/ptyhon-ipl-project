@@ -1,4 +1,5 @@
 from csvToJSon import csvToJson
+import json
 
 
 deliveries = csvToJson("../data/deliveries.csv")
@@ -27,7 +28,9 @@ def getHighestDismissal():
       bowlerAndWickets_list = list(bowlerAndWickets.items())
       bowlerAndWickets_list.sort(key = lambda item : item[1],reverse= True)
       finalResult[playerName] = dict(bowlerAndWickets_list[:1])
-   return finalResult
+
+   with open("../public/highest-dismissal.json","w") as file:
+     json.dump(finalResult,file,indent=4)
     
 
 getHighestDismissal()

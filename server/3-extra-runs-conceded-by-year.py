@@ -1,5 +1,5 @@
 from csvToJSon import csvToJson
-
+import json
 
 deliveries = csvToJson("../data/deliveries.csv")
 matches = csvToJson("../data/matches.csv")
@@ -34,6 +34,7 @@ def getExtraRunsConcededByYear(year):
                 result[bowlingTeam] += extraRuns
             else:
                   result[bowlingTeam] =  extraRuns
-    return result
+    with open("../public/extra-runs-conceded.json","w") as file:
+     json.dump(result,file,indent=4)
 
 getExtraRunsConcededByYear(2016)    

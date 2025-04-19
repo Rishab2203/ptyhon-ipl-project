@@ -1,5 +1,5 @@
 from csvToJSon import csvToJson
-
+import json
 
 matches = csvToJson("../data/matches.csv")
 
@@ -13,7 +13,8 @@ def wonTossWonMatch():
            result[team]= 0
        result[team] += 1    
 
-    return(result)
+    with open("../public/won-toss-won-match.json","w") as file:
+     json.dump(result,file,indent=4)
 
 
 wonTossWonMatch()

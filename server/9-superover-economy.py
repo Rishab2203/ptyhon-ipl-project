@@ -1,5 +1,6 @@
 from csvToJSon import csvToJson
-from functools import reduce
+
+import json
 
 deliveries = csvToJson("../data/deliveries.csv")
 matches = csvToJson("../data/matches.csv")
@@ -28,6 +29,7 @@ def getTopEconomicBowlersInSuperOver(year):
     econmoies = list(map(lambda item: (item[0], item[1]["runs"]/item[1]["balls"]),new_list))
    
     econmoies.sort(key= lambda bowler: bowler[1] )
-    return econmoies[:10]
+    with open("../public/superover-top-economic-bowlers.json","w") as file:
+     json.dump(econmoies[:10],file,indent=4)
 
 getTopEconomicBowlersInSuperOver(2016)
